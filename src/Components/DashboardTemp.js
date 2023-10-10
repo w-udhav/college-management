@@ -24,16 +24,17 @@ export default function DashboardTemp({ children }) {
     <div className="w-full min-h-screen overflow-y-auto">
       <div className="flex flex-row w-full h-full">
         {/* Left */}
-        <div className="w-[16rem] lg:w-[17rem] h-full p-2 flex flex-col z-20 gap-9">
-          <h3 className="font-medium px-4 text-sky-500 text-lg"> EduDesk </h3>
+        <div className="w-[16rem] lg:w-[17rem] h-full min-h-screen sticky bg-blue-50 p-2 flex flex-col z-20 gap-9">
+          <h3 className="font-medium px-2 text-zinc-800 text-2xl"> EduDesk </h3>
           {/* Links */}
-          <div className="flex flex-col">
+          <div className="flex flex-col gap-1">
+            <h3 className="text-[14px] pb-2 px-1">Main Links</h3>
             {mainLinks.map((link) => {
               return (
                 <Link
                   to={link.route}
                   key={link.id}
-                  className="px-4 py-2 rounded-md hover:bg-sky-500 hover:text-white"
+                  className="px-4 py-2 rounded-full hover:bg-sky-500 hover:text-white bg-white text-sky-500 font-medium"
                 >
                   {link.name}
                 </Link>
@@ -45,8 +46,10 @@ export default function DashboardTemp({ children }) {
         {/* Right */}
         <div className="w-full max-h-[100vh] overflow-hidden">
           <Navbar />
-          <div className="h-[92vh] p-2 overflow-y-auto">
-            <div className="w-full h-full rounded-2xl">{children}</div>
+          <div className="p-2 overflow-y-auto">
+            <div className="w-full h-full rounded-2xl p-3 border">
+              {children}
+            </div>
           </div>
         </div>
       </div>

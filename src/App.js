@@ -5,6 +5,7 @@ import AuthRoute from "./Routes/AuthRoute";
 import DashboardRoute from "./Routes/DashboardRoute";
 import { useContext } from "react";
 import { AuthContext } from "./Utils/Context/AuthContext";
+import Loader from "./Components/Loader";
 
 function App() {
   const { user } = useContext(AuthContext);
@@ -21,11 +22,17 @@ function App() {
     fetchUser();
   }, []);
 
-  if (loading) return <h1>Loading...</h1>;
+  if (loading) {
+    return (
+      <div className="w-full h-full min-h-screen flex items-center justify-center">
+        <Loader />
+      </div>
+    );
+  }
 
   return (
     <Routes>
-      <Route path="/auth/*" element={<AuthRoute />} />
+      <Route path="/auth/*" element={<AuthRoute user={user} />} />
       <Route path="/dashboard/*" element={<DashboardRoute user={user} />} />
       {user ? (
         <Route path="*" element={<Navigate to="/dashboard" />} />
